@@ -1,57 +1,37 @@
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
-// Import screens
-// import 'package:turistar_viagem/screens/home/home_screen.dart';
-// import 'package:turistar_viagem/screens/flights/flight_search_screen.dart';
-// import 'package:turistar_viagem/screens/flights/flight_results_screen.dart';
-// import 'package:turistar_viagem/screens/checkout/checkout_screen.dart';
-// import 'package:turistar_viagem/screens/confirmation/confirmation_screen.dart';
+import '../../screens/checkout/checkout_screen.dart';
+import '../../screens/confirmation/confirmation_screen.dart';
+import '../../screens/flights/flight_results_screen.dart';
+import '../../screens/home/home_screen_premium.dart';
+
+class AppRoutes {
+  static const home = '/';
+  static const flights = '/flights';
+  static const flightResults = '/flights/results';
+  static const checkout = '/checkout';
+  static const confirmation = '/confirmation';
+}
 
 class AppRouter {
-  static final GoRouter router = GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-        path: '/',
-        name: 'home',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Home')),
+  static Map<String, WidgetBuilder> get routes {
+    return {
+      AppRoutes.home: (context) => const HomeScreenPremium(),
+      AppRoutes.flights: (context) => const FlightResultsScreen(),
+      AppRoutes.flightResults: (context) => const FlightResultsScreen(),
+      AppRoutes.checkout: (context) => const CheckoutScreen(),
+      AppRoutes.confirmation: (context) => const ConfirmationScreen(),
+    };
+  }
+
+  static Route<dynamic> onUnknownRoute(RouteSettings settings) {
+    return MaterialPageRoute<void>(
+      builder: (context) => Scaffold(
+        appBar: AppBar(title: const Text('Turistar Viagens')),
+        body: Center(
+          child: Text('Página não encontrada: ${settings.name ?? ''}'),
         ),
       ),
-      GoRoute(
-        path: '/flights/search',
-        name: 'flight_search',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Flight Search')),
-        ),
-      ),
-      GoRoute(
-        path: '/flights/results',
-        name: 'flight_results',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Flight Results')),
-        ),
-      ),
-      GoRoute(
-        path: '/checkout',
-        name: 'checkout',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Checkout')),
-        ),
-      ),
-      GoRoute(
-        path: '/confirmation',
-        name: 'confirmation',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Confirmation')),
-        ),
-      ),
-    ],
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Text('Page not found: ${state.location}'),
-      ),
-    ),
-  );
+    );
+  }
 }

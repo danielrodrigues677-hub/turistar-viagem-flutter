@@ -139,13 +139,18 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
       ),
       child: Stack(
         children: [
-          // Background blur effect
+          // Decorative background keeps the hero visual rich without requiring
+          // image assets in a fresh Android Studio checkout.
           Positioned.fill(
             child: Opacity(
               opacity: 0.1,
-              child: Image.asset(
-                'assets/images/airplane_bg.png',
-                fit: BoxFit.cover,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Icon(
+                  Icons.flight_takeoff,
+                  size: 220,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

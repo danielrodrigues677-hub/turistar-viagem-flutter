@@ -4,9 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'config/theme/app_theme.dart';
+import 'config/theme/app_theme_premium.dart';
 import 'config/router/app_router.dart';
 import 'providers/app_providers.dart';
-import 'screens/home/home_screen.dart';
+import 'screens/home/home_screen_premium.dart';
 import 'screens/flights/flight_results_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
 import 'screens/confirmation/confirmation_screen.dart';
@@ -26,7 +27,7 @@ class TuristarViagemApp extends StatelessWidget {
         GoRoute(
           path: '/',
           name: 'home',
-          builder: (context, state) => const HomeScreen(),
+          builder: (context, state) => const HomeScreenPremium(),
         ),
         GoRoute(
           path: '/flights/results',
@@ -55,8 +56,7 @@ class TuristarViagemApp extends StatelessWidget {
       providers: AppProviders.providers,
       child: MaterialApp.router(
         title: 'Turistar Viagem',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
+        theme: AppThemePremium.lightTheme,
         themeMode: ThemeMode.light,
         routerConfig: router,
         debugShowCheckedModeBanner: false,

@@ -12,7 +12,7 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   String _paymentMethod = 'credit_card';
   bool _agreeTerms = false;
-  
+
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -49,7 +49,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           children: [
             // Progress Indicator
             Container(
-              color: AppTheme.primaryNavy.withOpacity(0.05),
+              color: AppTheme.primaryNavy.withValues(alpha: 0.05),
               padding: const EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,12 +74,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     child: Column(
                       children: [
                         _buildSummaryRow('Companhia', 'LATAM Airlines'),
-                        _buildSummaryRow('Rota', 'São Paulo (GRU) → Miami (MIA)'),
+                        _buildSummaryRow(
+                            'Rota', 'São Paulo (GRU) → Miami (MIA)'),
                         _buildSummaryRow('Data', '15 de Junho, 2024'),
                         _buildSummaryRow('Horário', '08:00 - 14:30'),
                         _buildSummaryRow('Duração', '7h 30m'),
                         const Divider(),
-                        _buildSummaryRow('Preço', 'R\$ 1.200,00', isPrice: true),
+                        _buildSummaryRow('Preço', 'R\$ 1.200,00',
+                            isPrice: true),
                       ],
                     ),
                   ),
@@ -94,7 +96,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           controller: _nameController,
                           decoration: InputDecoration(
                             hintText: 'Nome Completo',
-                            prefixIcon: Icon(Icons.person, color: AppTheme.accentOrange),
+                            prefixIcon: Icon(Icons.person,
+                                color: AppTheme.accentOrange),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -102,7 +105,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           controller: _emailController,
                           decoration: InputDecoration(
                             hintText: 'Email',
-                            prefixIcon: Icon(Icons.email, color: AppTheme.accentOrange),
+                            prefixIcon:
+                                Icon(Icons.email, color: AppTheme.accentOrange),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -110,7 +114,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           controller: _phoneController,
                           decoration: InputDecoration(
                             hintText: 'Telefone',
-                            prefixIcon: Icon(Icons.phone, color: AppTheme.accentOrange),
+                            prefixIcon:
+                                Icon(Icons.phone, color: AppTheme.accentOrange),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -118,7 +123,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           controller: _cpfController,
                           decoration: InputDecoration(
                             hintText: 'CPF',
-                            prefixIcon: Icon(Icons.badge, color: AppTheme.accentOrange),
+                            prefixIcon:
+                                Icon(Icons.badge, color: AppTheme.accentOrange),
                           ),
                         ),
                       ],
@@ -154,7 +160,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   const SizedBox(height: 20),
 
                   // Card Details
-                  if (_paymentMethod == 'credit_card' || _paymentMethod == 'debit_card')
+                  if (_paymentMethod == 'credit_card' ||
+                      _paymentMethod == 'debit_card')
                     _buildSectionCard(
                       title: 'Dados do Cartão',
                       child: Column(
@@ -163,7 +170,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             controller: _cardController,
                             decoration: InputDecoration(
                               hintText: 'Número do Cartão',
-                              prefixIcon: Icon(Icons.credit_card, color: AppTheme.accentOrange),
+                              prefixIcon: Icon(Icons.credit_card,
+                                  color: AppTheme.accentOrange),
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -173,7 +181,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: 'MM/AA',
-                                    prefixIcon: Icon(Icons.calendar_today, color: AppTheme.accentOrange),
+                                    prefixIcon: Icon(Icons.calendar_today,
+                                        color: AppTheme.accentOrange),
                                   ),
                                 ),
                               ),
@@ -182,7 +191,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: 'CVV',
-                                    prefixIcon: Icon(Icons.lock, color: AppTheme.accentOrange),
+                                    prefixIcon: Icon(Icons.lock,
+                                        color: AppTheme.accentOrange),
                                   ),
                                 ),
                               ),
@@ -197,7 +207,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   // Terms & Conditions
                   Card(
                     elevation: 2,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.all(12),
                       child: Row(
@@ -228,12 +239,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          AppTheme.accentOrange.withOpacity(0.1),
-                          AppTheme.accentOrange.withOpacity(0.05),
+                          AppTheme.accentOrange.withValues(alpha: 0.1),
+                          AppTheme.accentOrange.withValues(alpha: 0.05),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: AppTheme.accentOrange.withOpacity(0.3)),
+                      border: Border.all(
+                          color: AppTheme.accentOrange.withValues(alpha: 0.3)),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -389,17 +401,25 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           border: Border.all(
-            color: _paymentMethod == value ? AppTheme.accentOrange : Color(0xFFE5E7EB),
+            color: _paymentMethod == value
+                ? AppTheme.accentOrange
+                : Color(0xFFE5E7EB),
             width: _paymentMethod == value ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
-          color: _paymentMethod == value ? AppTheme.accentOrange.withOpacity(0.05) : Colors.transparent,
+          color: _paymentMethod == value
+              ? AppTheme.accentOrange.withValues(alpha: 0.05)
+              : Colors.transparent,
         ),
         child: Row(
           children: [
             Icon(
-              _paymentMethod == value ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-              color: _paymentMethod == value ? AppTheme.accentOrange : Color(0xFFE5E7EB),
+              _paymentMethod == value
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_unchecked,
+              color: _paymentMethod == value
+                  ? AppTheme.accentOrange
+                  : Color(0xFFE5E7EB),
             ),
             const SizedBox(width: 12),
             Icon(icon, color: AppTheme.primaryNavy),

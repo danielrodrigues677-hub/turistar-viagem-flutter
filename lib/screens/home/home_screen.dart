@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../config/theme/app_theme.dart';
-import '../../widgets/search_box.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,11 +10,10 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  
-  String _origin = '';
-  String _destination = '';
+
   DateTime _departureDate = DateTime.now().add(const Duration(days: 1));
   DateTime? _returnDate;
   int _passengers = 1;
@@ -57,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  
+
                   // Logo
                   RichText(
                     text: TextSpan(
@@ -82,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     ),
                   ),
                   const SizedBox(height: 30),
-                  
+
                   // Main Title
                   Text(
                     'Explore o Mundo com\nConfiança e Segurança',
@@ -103,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     ),
                   ),
                   const SizedBox(height: 30),
-                  
+
                   // Stats
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -268,14 +266,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           children: [
             Expanded(
               child: TextField(
-                onChanged: (value) => setState(() => _origin = value),
+                onChanged: (_) {},
                 style: GoogleFonts.inter(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white10,
                   hintText: 'De',
                   hintStyle: GoogleFonts.inter(color: Colors.white30),
-                  prefixIcon: Icon(Icons.location_on, color: AppTheme.accentOrange),
+                  prefixIcon:
+                      Icon(Icons.location_on, color: AppTheme.accentOrange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Colors.white30),
@@ -290,14 +289,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             const SizedBox(width: 12),
             Expanded(
               child: TextField(
-                onChanged: (value) => setState(() => _destination = value),
+                onChanged: (_) {},
                 style: GoogleFonts.inter(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white10,
                   hintText: 'Para',
                   hintStyle: GoogleFonts.inter(color: Colors.white30),
-                  prefixIcon: Icon(Icons.location_on, color: AppTheme.accentOrange),
+                  prefixIcon:
+                      Icon(Icons.location_on, color: AppTheme.accentOrange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Colors.white30),
@@ -320,7 +320,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               child: GestureDetector(
                 onTap: () => _selectDate(context, true),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                   decoration: BoxDecoration(
                     color: Colors.white10,
                     borderRadius: BorderRadius.circular(12),
@@ -328,7 +329,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.calendar_today, color: AppTheme.accentOrange, size: 18),
+                      Icon(Icons.calendar_today,
+                          color: AppTheme.accentOrange, size: 18),
                       const SizedBox(width: 8),
                       Text(
                         DateFormat('dd/MM').format(_departureDate),
@@ -344,7 +346,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               child: GestureDetector(
                 onTap: () => _selectDate(context, false),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                   decoration: BoxDecoration(
                     color: Colors.white10,
                     borderRadius: BorderRadius.circular(12),
@@ -352,11 +355,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.calendar_today, color: AppTheme.accentOrange, size: 18),
+                      Icon(Icons.calendar_today,
+                          color: AppTheme.accentOrange, size: 18),
                       const SizedBox(width: 8),
                       Text(
-                        _returnDate != null ? DateFormat('dd/MM').format(_returnDate!) : 'Retorno',
-                        style: GoogleFonts.inter(color: _returnDate != null ? Colors.white : Colors.white30),
+                        _returnDate != null
+                            ? DateFormat('dd/MM').format(_returnDate!)
+                            : 'Retorno',
+                        style: GoogleFonts.inter(
+                            color: _returnDate != null
+                                ? Colors.white
+                                : Colors.white30),
                       ),
                     ],
                   ),
@@ -372,7 +381,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           children: [
             Expanded(
               child: DropdownButtonFormField<int>(
-                value: _passengers,
+                initialValue: _passengers,
                 onChanged: (value) => setState(() => _passengers = value ?? 1),
                 items: [1, 2, 3, 4, 5, 6].map((int value) {
                   return DropdownMenuItem<int>(
@@ -396,10 +405,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             const SizedBox(width: 12),
             Expanded(
               child: DropdownButtonFormField<String>(
-                value: _seatClass,
-                onChanged: (value) => setState(() => _seatClass = value ?? 'Econômica'),
-                items: ['Econômica', 'Premium Economy', 'Executiva', 'Primeira Classe']
-                    .map((String value) {
+                initialValue: _seatClass,
+                onChanged: (value) =>
+                    setState(() => _seatClass = value ?? 'Econômica'),
+                items: [
+                  'Econômica',
+                  'Premium Economy',
+                  'Executiva',
+                  'Primeira Classe'
+                ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -408,7 +422,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white10,
-                  prefixIcon: Icon(Icons.airplanemode_active, color: AppTheme.accentOrange),
+                  prefixIcon: Icon(Icons.airplanemode_active,
+                      color: AppTheme.accentOrange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Colors.white30),
@@ -487,7 +502,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           gradient: LinearGradient(
             colors: [
               Colors.white,
-              AppTheme.accentOrange.withOpacity(0.05),
+              AppTheme.accentOrange.withValues(alpha: 0.05),
             ],
           ),
         ),
@@ -497,7 +512,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppTheme.accentOrange.withOpacity(0.1),
+                color: AppTheme.accentOrange.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(icon, color: AppTheme.accentOrange, size: 24),
@@ -536,8 +551,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [
-              AppTheme.primaryNavy.withOpacity(0.8),
-              AppTheme.navyLight.withOpacity(0.8),
+              AppTheme.primaryNavy.withValues(alpha: 0.8),
+              AppTheme.navyLight.withValues(alpha: 0.8),
             ],
           ),
         ),
@@ -549,7 +564,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               child: Icon(
                 Icons.location_on,
                 size: 80,
-                color: AppTheme.accentOrange.withOpacity(0.1),
+                color: AppTheme.accentOrange.withValues(alpha: 0.1),
               ),
             ),
             Padding(
@@ -586,7 +601,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   void _selectDate(BuildContext context, bool isDeparture) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: isDeparture ? _departureDate : (_returnDate ?? DateTime.now().add(const Duration(days: 1))),
+      initialDate: isDeparture
+          ? _departureDate
+          : (_returnDate ?? DateTime.now().add(const Duration(days: 1))),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );

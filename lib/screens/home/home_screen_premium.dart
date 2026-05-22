@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../config/theme/app_theme_premium.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/gradient_button.dart';
-import 'dart:ui' as ui;
 
 class HomeScreenPremium extends StatefulWidget {
   const HomeScreenPremium({Key? key}) : super(key: key);
@@ -12,11 +11,12 @@ class HomeScreenPremium extends StatefulWidget {
   State<HomeScreenPremium> createState() => _HomeScreenPremiumState();
 }
 
-class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTickerProviderStateMixin {
+class _HomeScreenPremiumState extends State<HomeScreenPremium>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
-  
+
   int _selectedTab = 0;
 
   @override
@@ -26,15 +26,16 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
       duration: Duration(milliseconds: 1200),
       vsync: this,
     );
-    
+
     _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
     );
-    
-    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero).animate(
+
+    _slideAnimation =
+        Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
     );
-    
+
     _animationController.forward();
   }
 
@@ -139,13 +140,18 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
       ),
       child: Stack(
         children: [
-          // Background blur effect
+          // Decorative background keeps the hero visual rich without requiring
+          // image assets in a fresh Android Studio checkout.
           Positioned.fill(
             child: Opacity(
               opacity: 0.1,
-              child: Image.asset(
-                'assets/images/airplane_bg.png',
-                fit: BoxFit.cover,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Icon(
+                  Icons.flight_takeoff,
+                  size: 220,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -227,7 +233,7 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
     return GlassCard(
       borderRadius: 20,
       blur: 15,
-      backgroundColor: Colors.white.withOpacity(0.15),
+      backgroundColor: Colors.white.withValues(alpha: 0.15),
       padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,7 +292,7 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
           decoration: InputDecoration(
             hintText: hint,
             filled: true,
-            fillColor: Colors.white.withOpacity(0.9),
+            fillColor: Colors.white.withValues(alpha: 0.9),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none,
@@ -304,7 +310,7 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
 
   Widget _buildTabs() {
     final tabs = ['Voos', 'Hotéis', 'Carros', 'Pacotes'];
-    
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -377,7 +383,7 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
       child: GlassCard(
         borderRadius: 16,
         blur: 10,
-        backgroundColor: Colors.white.withOpacity(0.8),
+        backgroundColor: Colors.white.withValues(alpha: 0.8),
         onTap: () {
           Navigator.pushNamed(context, '/flights');
         },
@@ -470,14 +476,14 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
         return GlassCard(
           borderRadius: 16,
           blur: 10,
-          backgroundColor: Colors.white.withOpacity(0.7),
+          backgroundColor: Colors.white.withValues(alpha: 0.7),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppThemePremium.accentOrange.withOpacity(0.15),
+                  color: AppThemePremium.accentOrange.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -539,7 +545,7 @@ class _HomeScreenPremiumState extends State<HomeScreenPremium> with SingleTicker
               Navigator.pushNamed(context, '/flights');
             },
             gradient: LinearGradient(
-              colors: [Colors.white, Colors.white.withOpacity(0.9)],
+              colors: [Colors.white, Colors.white.withValues(alpha: 0.9)],
             ),
             fullWidth: true,
           ),

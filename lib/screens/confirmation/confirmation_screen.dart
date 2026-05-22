@@ -39,7 +39,7 @@ class ConfirmationScreen extends StatelessWidget {
                     width: 80,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: AppTheme.accentOrange.withOpacity(0.2),
+                      color: AppTheme.accentOrange.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -120,7 +120,8 @@ class ConfirmationScreen extends StatelessWidget {
                       _buildPriceRow('Tarifa Base', 'R\$ 1.000,00'),
                       _buildPriceRow('Taxas', 'R\$ 200,00'),
                       const Divider(),
-                      _buildPriceRow('Total Pago', 'R\$ 1.200,00', isTotal: true),
+                      _buildPriceRow('Total Pago', 'R\$ 1.200,00',
+                          isTotal: true),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -129,10 +130,10 @@ class ConfirmationScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppTheme.accentOrange.withOpacity(0.1),
+                      color: AppTheme.accentOrange.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: AppTheme.accentOrange.withOpacity(0.3),
+                        color: AppTheme.accentOrange.withValues(alpha: 0.3),
                       ),
                     ),
                     child: Column(
@@ -243,8 +244,8 @@ class ConfirmationScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [
-              AppTheme.accentOrange.withOpacity(0.1),
-              AppTheme.accentOrange.withOpacity(0.05),
+              AppTheme.accentOrange.withValues(alpha: 0.1),
+              AppTheme.accentOrange.withValues(alpha: 0.05),
             ],
           ),
         ),
@@ -253,7 +254,7 @@ class ConfirmationScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppTheme.accentOrange.withOpacity(0.2),
+                color: AppTheme.accentOrange.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(icon, color: AppTheme.accentOrange, size: 24),

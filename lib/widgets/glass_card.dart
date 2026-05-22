@@ -26,7 +26,8 @@ class GlassCard extends StatefulWidget {
   State<GlassCard> createState() => _GlassCardState();
 }
 
-class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMixin {
+class _GlassCardState extends State<GlassCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
@@ -65,16 +66,18 @@ class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMix
             filter: ImageFilter.blur(sigmaX: widget.blur, sigmaY: widget.blur),
             child: Container(
               decoration: BoxDecoration(
-                color: widget.backgroundColor ?? Colors.white.withOpacity(0.1),
+                color: widget.backgroundColor ??
+                    Colors.white.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   width: 1.5,
                 ),
                 boxShadow: widget.enableGlow
                     ? [
                         BoxShadow(
-                          color: AppThemePremium.accentOrange.withOpacity(0.1),
+                          color: AppThemePremium.accentOrange
+                              .withValues(alpha: 0.1),
                           blurRadius: 16,
                           offset: Offset(0, 8),
                         ),

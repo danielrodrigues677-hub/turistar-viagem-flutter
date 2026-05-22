@@ -65,7 +65,7 @@ lib/
 
 ### Pré-requisitos
 
-- Flutter 3.x instalado
+- Flutter SDK estável atual instalado (validado com Flutter 3.44.0)
 - Dart SDK
 - Android Studio (para Android)
 - Xcode (para iOS)
@@ -74,8 +74,8 @@ lib/
 
 1. Clone o repositório
 ```bash
-git clone https://github.com/turistar/turistar-viagem-flutter.git
-cd turistar_viagem_flutter
+git clone https://github.com/danielrodrigues677-hub/turistar-viagem-flutter.git
+cd turistar-viagem-flutter
 ```
 
 2. Instale as dependências
@@ -87,6 +87,20 @@ flutter pub get
 ```bash
 flutter run
 ```
+
+
+### Rodar no Android Studio
+
+1. Instale o Flutter SDK estável atual e o Android Studio.
+2. Abra a pasta raiz deste repositório no Android Studio.
+3. Aguarde o Android Studio criar/atualizar `android/local.properties` com o caminho do Flutter SDK.
+4. Rode:
+```bash
+flutter pub get
+flutter run -d android
+```
+
+> Observação: Firebase, Stripe e APIs reais ainda não estão ligados. O app Android atual roda como protótipo visual com dados mockados de voos.
 
 ### Executar em diferentes plataformas
 
@@ -109,7 +123,7 @@ flutter run -d android
 
 ### Pátria Consolidadora
 
-A plataforma está integrada com a API da Pátria Consolidadora para:
+A integração com a API da Pátria Consolidadora está planejada para:
 - Busca de voos em tempo real
 - Busca de hotéis
 - Aluguel de carros

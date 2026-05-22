@@ -12,8 +12,6 @@ class FlightResultsScreen extends StatefulWidget {
 
 class _FlightResultsScreenState extends State<FlightResultsScreen> {
   String _sortBy = 'price';
-  RangeValues _priceRange = const RangeValues(500, 5000);
-  List<String> _selectedAirlines = [];
   int? _selectedFlightId;
 
   final List<Map<String, dynamic>> _flights = [
@@ -83,7 +81,7 @@ class _FlightResultsScreenState extends State<FlightResultsScreen> {
           children: [
             // Header with results count
             Container(
-              color: AppTheme.primaryNavy.withOpacity(0.05),
+              color: AppTheme.primaryNavy.withValues(alpha: 0.05),
               padding: const EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,7 +106,8 @@ class _FlightResultsScreenState extends State<FlightResultsScreen> {
                       ),
                       DropdownMenuItem(
                         value: 'duration',
-                        child: Text('Menor Duração', style: GoogleFonts.inter()),
+                        child:
+                            Text('Menor Duração', style: GoogleFonts.inter()),
                       ),
                       DropdownMenuItem(
                         value: 'departure',

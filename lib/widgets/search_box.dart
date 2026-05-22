@@ -68,7 +68,7 @@ class _SearchBoxState extends State<SearchBox> {
           gradient: LinearGradient(
             colors: [
               Colors.white,
-              AppTheme.accentOrange.withOpacity(0.02),
+              AppTheme.accentOrange.withValues(alpha: 0.02),
             ],
           ),
         ),
@@ -95,7 +95,8 @@ class _SearchBoxState extends State<SearchBox> {
                     onChanged: widget.onFromCityChanged,
                     decoration: InputDecoration(
                       hintText: 'De',
-                      prefixIcon: Icon(Icons.location_on, color: AppTheme.accentOrange),
+                      prefixIcon:
+                          Icon(Icons.location_on, color: AppTheme.accentOrange),
                     ),
                   ),
                 ),
@@ -106,7 +107,8 @@ class _SearchBoxState extends State<SearchBox> {
                     onChanged: widget.onToCityChanged,
                     decoration: InputDecoration(
                       hintText: 'Para',
-                      prefixIcon: Icon(Icons.location_on, color: AppTheme.accentOrange),
+                      prefixIcon:
+                          Icon(Icons.location_on, color: AppTheme.accentOrange),
                     ),
                   ),
                 ),
@@ -134,10 +136,12 @@ class _SearchBoxState extends State<SearchBox> {
                       enabled: false,
                       decoration: InputDecoration(
                         hintText: 'Saída',
-                        prefixIcon: Icon(Icons.calendar_today, color: AppTheme.accentOrange),
+                        prefixIcon: Icon(Icons.calendar_today,
+                            color: AppTheme.accentOrange),
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE5E7EB)),
                         ),
                       ),
                     ),
@@ -149,7 +153,8 @@ class _SearchBoxState extends State<SearchBox> {
                     onTap: () async {
                       final date = await showDatePicker(
                         context: context,
-                        initialDate: widget.returnDate ?? DateTime.now().add(const Duration(days: 1)),
+                        initialDate: widget.returnDate ??
+                            DateTime.now().add(const Duration(days: 1)),
                         firstDate: DateTime.now(),
                         lastDate: DateTime.now().add(const Duration(days: 365)),
                       );
@@ -161,10 +166,12 @@ class _SearchBoxState extends State<SearchBox> {
                       enabled: false,
                       decoration: InputDecoration(
                         hintText: 'Retorno',
-                        prefixIcon: Icon(Icons.calendar_today, color: AppTheme.accentOrange),
+                        prefixIcon: Icon(Icons.calendar_today,
+                            color: AppTheme.accentOrange),
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE5E7EB)),
                         ),
                       ),
                     ),
@@ -179,7 +186,7 @@ class _SearchBoxState extends State<SearchBox> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField<int>(
-                    value: widget.passengers,
+                    initialValue: widget.passengers,
                     onChanged: (value) {
                       if (value != null) {
                         widget.onPassengersChanged(value);
@@ -193,21 +200,26 @@ class _SearchBoxState extends State<SearchBox> {
                     }).toList(),
                     decoration: InputDecoration(
                       hintText: 'Passageiros',
-                      prefixIcon: Icon(Icons.people, color: AppTheme.accentOrange),
+                      prefixIcon:
+                          Icon(Icons.people, color: AppTheme.accentOrange),
                     ),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: DropdownButtonFormField<String>(
-                    value: widget.travelClass,
+                    initialValue: widget.travelClass,
                     onChanged: (value) {
                       if (value != null) {
                         widget.onClassChanged(value);
                       }
                     },
-                    items: ['Econômica', 'Premium Economy', 'Executiva', 'Primeira Classe']
-                        .map((String value) {
+                    items: [
+                      'Econômica',
+                      'Premium Economy',
+                      'Executiva',
+                      'Primeira Classe'
+                    ].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -215,7 +227,8 @@ class _SearchBoxState extends State<SearchBox> {
                     }).toList(),
                     decoration: InputDecoration(
                       hintText: 'Classe',
-                      prefixIcon: Icon(Icons.airplanemode_active, color: AppTheme.accentOrange),
+                      prefixIcon: Icon(Icons.airplanemode_active,
+                          color: AppTheme.accentOrange),
                     ),
                   ),
                 ),

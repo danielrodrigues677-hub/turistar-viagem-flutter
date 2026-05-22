@@ -33,7 +33,7 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: primaryNavy,
       scaffoldBackgroundColor: white,
-      
+
       // Text Theme
       textTheme: GoogleFonts.poppinsTextTheme().copyWith(
         displayLarge: GoogleFonts.poppins(
@@ -69,7 +69,7 @@ class AppTheme {
           color: Color(0xFF9CA3AF),
         ),
       ),
-      
+
       // App Bar Theme
       appBarTheme: AppBarTheme(
         backgroundColor: primaryNavy,
@@ -82,7 +82,7 @@ class AppTheme {
           color: white,
         ),
       ),
-      
+
       // Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -99,7 +99,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -111,7 +111,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Outlined Button Theme
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
@@ -127,7 +127,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -148,7 +148,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: error, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         hintStyle: GoogleFonts.inter(
           color: Color(0xFF9CA3AF),
           fontSize: 14,
@@ -158,17 +159,17 @@ class AppTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
-      
+
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
         color: white,
-        shadowColor: primaryNavy.withOpacity(0.1),
+        shadowColor: primaryNavy.withValues(alpha: 0.1),
       ),
-      
+
       // Chip Theme
       chipTheme: ChipThemeData(
         backgroundColor: lightGrey,
@@ -178,7 +179,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      
+
       // Bottom Navigation Theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: white,
@@ -187,7 +188,7 @@ class AppTheme {
         elevation: 8,
         type: BottomNavigationBarType.fixed,
       ),
-      
+
       // Floating Action Button Theme
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: accentOrange,
@@ -197,7 +198,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(16),
         ),
       ),
-      
+
       // Color Scheme
       colorScheme: ColorScheme.light(
         primary: primaryNavy,
@@ -216,8 +217,8 @@ class AppTheme {
       brightness: Brightness.dark,
       primaryColor: primaryNavy,
       scaffoldBackgroundColor: darkGrey,
-      
-      textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme).copyWith(
+      textTheme:
+          GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme).copyWith(
         displayLarge: GoogleFonts.poppins(
           fontSize: 32,
           fontWeight: FontWeight.bold,
@@ -234,13 +235,11 @@ class AppTheme {
           color: white,
         ),
       ),
-      
       appBarTheme: AppBarTheme(
         backgroundColor: primaryNavy,
         foregroundColor: white,
         elevation: 0,
       ),
-      
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: accentOrange,
@@ -251,7 +250,6 @@ class AppTheme {
           ),
         ),
       ),
-      
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Color(0xFF374151),
@@ -268,15 +266,13 @@ class AppTheme {
           borderSide: const BorderSide(color: accentOrange, width: 2),
         ),
       ),
-      
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
         color: Color(0xFF2D3748),
       ),
-      
       colorScheme: ColorScheme.dark(
         primary: primaryNavy,
         secondary: accentOrange,

@@ -14,17 +14,24 @@ class TuristarViagemApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = MaterialApp(
+      title: 'Turistar Viagem',
+      theme: AppThemePremium.lightTheme,
+      themeMode: ThemeMode.light,
+      initialRoute: AppRoutes.home,
+      routes: AppRouter.routes,
+      onUnknownRoute: AppRouter.onUnknownRoute,
+      debugShowCheckedModeBanner: false,
+    );
+
+    final providers = AppProviders.providers;
+    if (providers.isEmpty) {
+      return app;
+    }
+
     return MultiProvider(
-      providers: AppProviders.providers,
-      child: MaterialApp(
-        title: 'Turistar Viagem',
-        theme: AppThemePremium.lightTheme,
-        themeMode: ThemeMode.light,
-        initialRoute: AppRoutes.home,
-        routes: AppRouter.routes,
-        onUnknownRoute: AppRouter.onUnknownRoute,
-        debugShowCheckedModeBanner: false,
-      ),
+      providers: providers,
+      child: app,
     );
   }
 }

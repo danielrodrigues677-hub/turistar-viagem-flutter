@@ -65,7 +65,7 @@ lib/
 
 ### Pré-requisitos
 
-- Flutter 3.x instalado
+- Flutter SDK estável atual instalado (validado com Flutter 3.44.0)
 - Dart SDK
 - Android Studio (para Android)
 - Xcode (para iOS)
@@ -91,7 +91,7 @@ flutter run
 
 ### Rodar no Android Studio
 
-1. Instale o Flutter SDK e o Android Studio.
+1. Instale o Flutter SDK estável atual e o Android Studio.
 2. Abra a pasta raiz deste repositório no Android Studio.
 3. Aguarde o Android Studio criar/atualizar `android/local.properties` com o caminho do Flutter SDK.
 4. Rode:

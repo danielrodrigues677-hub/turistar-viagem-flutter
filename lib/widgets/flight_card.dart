@@ -30,7 +30,8 @@ class FlightCard extends StatefulWidget {
   State<FlightCard> createState() => _FlightCardState();
 }
 
-class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateMixin {
+class _FlightCardState extends State<FlightCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
 
@@ -70,7 +71,9 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
             side: BorderSide(
-              color: widget.isSelected ? AppTheme.accentOrange : Colors.transparent,
+              color: widget.isSelected
+                  ? AppTheme.accentOrange
+                  : Colors.transparent,
               width: 2,
             ),
           ),
@@ -81,8 +84,8 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
               gradient: widget.isSelected
                   ? LinearGradient(
                       colors: [
-                        AppTheme.accentOrange.withOpacity(0.05),
-                        AppTheme.accentOrange.withOpacity(0.02),
+                        AppTheme.accentOrange.withValues(alpha: 0.05),
+                        AppTheme.accentOrange.withValues(alpha: 0.02),
                       ],
                     )
                   : null,
@@ -102,9 +105,10 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: AppTheme.accentOrange.withOpacity(0.1),
+                        color: AppTheme.accentOrange.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -119,7 +123,7 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
                   ],
                 ),
                 const SizedBox(height: 16),
-                
+
                 // Flight Timeline
                 Row(
                   children: [
@@ -147,7 +151,7 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
                         ],
                       ),
                     ),
-                    
+
                     // Duration & Arrow
                     Expanded(
                       child: Column(
@@ -168,7 +172,7 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
                         ],
                       ),
                     ),
-                    
+
                     // Arrival
                     Expanded(
                       child: Column(
@@ -195,9 +199,9 @@ class _FlightCardState extends State<FlightCard> with SingleTickerProviderStateM
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 12),
-                
+
                 // Footer
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

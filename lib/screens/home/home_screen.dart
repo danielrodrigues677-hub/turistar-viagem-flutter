@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import '../../config/theme/app_theme.dart';
+import '../../widgets/search_box.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,13 +14,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   
-  String _tripType = 'roundtrip'; // roundtrip, oneway, multicity
   String _origin = '';
   String _destination = '';
   DateTime _departureDate = DateTime.now().add(const Duration(days: 1));
   DateTime? _returnDate;
   int _passengers = 1;
-  String _seatClass = 'economy';
+  String _seatClass = 'Econômica';
 
   @override
   void initState() {
@@ -46,8 +47,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF1e3a8a),
-                    const Color(0xFF3b82f6),
+                    AppTheme.primaryNavy,
+                    AppTheme.navyLight,
                   ],
                 ),
               ),
@@ -55,28 +56,36 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 20),
+                  
                   // Logo
-                  Text(
-                    'Turistar',
-                    style: GoogleFonts.poppins(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    'Viagem',
-                    style: GoogleFonts.poppins(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFFF59E0B),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Turistar',
+                          style: GoogleFonts.poppins(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' Viagem',
+                          style: GoogleFonts.poppins(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.accentOrange,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 30),
                   
                   // Main Title
                   Text(
-                    'Viva Experiências\nInesquecíveis',
+                    'Explore o Mundo com\nConfiança e Segurança',
                     style: GoogleFonts.poppins(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -84,39 +93,53 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       height: 1.3,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
                   Text(
-                    'Encontre os melhores voos, hotéis e pacotes de viagem',
+                    'Descubra destinos incríveis, reserve voos, hotéis e experiências únicas',
                     style: GoogleFonts.inter(
                       fontSize: 16,
                       color: Colors.white70,
+                      height: 1.5,
                     ),
                   ),
+                  const SizedBox(height: 30),
+                  
+                  // Stats
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildStat('500K+', 'Viajantes'),
+                      _buildStat('150+', 'Países'),
+                      _buildStat('24/7', 'Suporte'),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
 
             // Search Tabs
             Container(
-              color: const Color(0xFF1e3a8a),
+              color: AppTheme.primaryNavy,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TabBar(
                 controller: _tabController,
-                labelColor: const Color(0xFFF59E0B),
+                labelColor: AppTheme.accentOrange,
                 unselectedLabelColor: Colors.white70,
-                indicatorColor: const Color(0xFFF59E0B),
+                indicatorColor: AppTheme.accentOrange,
+                indicatorWeight: 3,
                 tabs: const [
                   Tab(text: 'Voos'),
                   Tab(text: 'Hotéis'),
                   Tab(text: 'Carros'),
-                  Tab(text: 'Seguros'),
+                  Tab(text: 'Pacotes'),
                 ],
               ),
             ),
 
             // Search Form
             Container(
-              color: const Color(0xFF1e3a8a),
+              color: AppTheme.primaryNavy,
               padding: const EdgeInsets.all(20),
               child: TabBarView(
                 controller: _tabController,
@@ -124,12 +147,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   _buildFlightSearchForm(),
                   _buildHotelSearchForm(),
                   _buildCarSearchForm(),
-                  _buildInsuranceSearchForm(),
+                  _buildPackageSearchForm(),
                 ],
               ),
             ),
 
-            // Highlights Section
+            // Features Section
             Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -140,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF1e3a8a),
+                      color: AppTheme.primaryNavy,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -151,26 +174,58 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     mainAxisSpacing: 15,
                     crossAxisSpacing: 15,
                     children: [
-                      _buildHighlightCard(
+                      _buildFeatureCard(
                         icon: Icons.local_offer,
                         title: 'Melhores Preços',
-                        description: 'Tarifas negociadas direto com consolidadoras',
+                        description: 'Tarifas negociadas',
                       ),
-                      _buildHighlightCard(
+                      _buildFeatureCard(
                         icon: Icons.support_agent,
                         title: 'Suporte 24/7',
-                        description: 'Atendimento em português sempre disponível',
+                        description: 'Sempre disponível',
                       ),
-                      _buildHighlightCard(
+                      _buildFeatureCard(
                         icon: Icons.verified_user,
                         title: 'Segurança',
-                        description: 'Plataforma 100% segura e confiável',
+                        description: '100% confiável',
                       ),
-                      _buildHighlightCard(
+                      _buildFeatureCard(
                         icon: Icons.flash_on,
                         title: 'Rápido',
-                        description: 'Busca e reserva em segundos',
+                        description: 'Em segundos',
                       ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Popular Destinations
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Destinos em Alta',
+                    style: GoogleFonts.poppins(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.primaryNavy,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  GridView.count(
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    children: [
+                      _buildDestinationCard('Miami', 'R\$ 1.200'),
+                      _buildDestinationCard('Paris', 'R\$ 2.500'),
+                      _buildDestinationCard('Cancún', 'R\$ 1.800'),
+                      _buildDestinationCard('Nova York', 'R\$ 2.200'),
                     ],
                   ),
                 ],
@@ -182,117 +237,206 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     );
   }
 
+  Widget _buildStat(String value, String label) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: AppTheme.accentOrange,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: GoogleFonts.inter(
+            fontSize: 12,
+            color: Colors.white70,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildFlightSearchForm() {
     return Column(
       children: [
-        // Trip Type Selection
-        Row(
-          children: [
-            Expanded(
-              child: _buildTripTypeButton('Ida e Volta', 'roundtrip'),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: _buildTripTypeButton('Só Ida', 'oneway'),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: _buildTripTypeButton('Multi-cidade', 'multicity'),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-
         // Origin and Destination
         Row(
           children: [
             Expanded(
-              child: _buildTextField(
-                label: 'De',
-                value: _origin,
+              child: TextField(
                 onChanged: (value) => setState(() => _origin = value),
+                style: GoogleFonts.inter(color: Colors.white),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white10,
+                  hintText: 'De',
+                  hintStyle: GoogleFonts.inter(color: Colors.white30),
+                  prefixIcon: Icon(Icons.location_on, color: AppTheme.accentOrange),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.white30),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.white30),
+                  ),
+                ),
               ),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 12),
             Expanded(
-              child: _buildTextField(
-                label: 'Para',
-                value: _destination,
+              child: TextField(
                 onChanged: (value) => setState(() => _destination = value),
+                style: GoogleFonts.inter(color: Colors.white),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white10,
+                  hintText: 'Para',
+                  hintStyle: GoogleFonts.inter(color: Colors.white30),
+                  prefixIcon: Icon(Icons.location_on, color: AppTheme.accentOrange),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.white30),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.white30),
+                  ),
+                ),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 12),
 
         // Dates
         Row(
           children: [
             Expanded(
-              child: _buildDateField(
-                label: 'Ida',
-                date: _departureDate,
+              child: GestureDetector(
                 onTap: () => _selectDate(context, true),
-              ),
-            ),
-            const SizedBox(width: 10),
-            if (_tripType == 'roundtrip')
-              Expanded(
-                child: _buildDateField(
-                  label: 'Volta',
-                  date: _returnDate,
-                  onTap: () => _selectDate(context, false),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: Colors.white10,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.white30),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.calendar_today, color: AppTheme.accentOrange, size: 18),
+                      const SizedBox(width: 8),
+                      Text(
+                        DateFormat('dd/MM').format(_departureDate),
+                        style: GoogleFonts.inter(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: GestureDetector(
+                onTap: () => _selectDate(context, false),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: Colors.white10,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.white30),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.calendar_today, color: AppTheme.accentOrange, size: 18),
+                      const SizedBox(width: 8),
+                      Text(
+                        _returnDate != null ? DateFormat('dd/MM').format(_returnDate!) : 'Retorno',
+                        style: GoogleFonts.inter(color: _returnDate != null ? Colors.white : Colors.white30),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 12),
 
         // Passengers and Class
         Row(
           children: [
             Expanded(
-              child: _buildDropdown(
-                label: 'Passageiros',
-                value: _passengers.toString(),
-                items: List.generate(9, (i) => (i + 1).toString()),
-                onChanged: (value) => setState(() => _passengers = int.parse(value!)),
+              child: DropdownButtonFormField<int>(
+                value: _passengers,
+                onChanged: (value) => setState(() => _passengers = value ?? 1),
+                items: [1, 2, 3, 4, 5, 6].map((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text('$value Passageiro${value > 1 ? 's' : ''}'),
+                  );
+                }).toList(),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white10,
+                  prefixIcon: Icon(Icons.people, color: AppTheme.accentOrange),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.white30),
+                  ),
+                ),
+                dropdownColor: AppTheme.primaryNavy,
+                style: GoogleFonts.inter(color: Colors.white),
               ),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 12),
             Expanded(
-              child: _buildDropdown(
-                label: 'Classe',
+              child: DropdownButtonFormField<String>(
                 value: _seatClass,
-                items: const ['economy', 'premium', 'business', 'first'],
-                onChanged: (value) => setState(() => _seatClass = value!),
+                onChanged: (value) => setState(() => _seatClass = value ?? 'Econômica'),
+                items: ['Econômica', 'Premium Economy', 'Executiva', 'Primeira Classe']
+                    .map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white10,
+                  prefixIcon: Icon(Icons.airplanemode_active, color: AppTheme.accentOrange),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.white30),
+                  ),
+                ),
+                dropdownColor: AppTheme.primaryNavy,
+                style: GoogleFonts.inter(color: Colors.white),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
 
         // Search Button
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              // Navigate to results
               Navigator.pushNamed(context, '/flights/results');
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFF59E0B),
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Text(
-              'Buscar Voos',
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: Text(
+                'Buscar Voos',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -305,7 +449,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return Center(
       child: Text(
         'Busca de Hotéis em desenvolvimento',
-        style: GoogleFonts.inter(color: Colors.white),
+        style: GoogleFonts.inter(color: Colors.white70),
       ),
     );
   }
@@ -314,193 +458,67 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return Center(
       child: Text(
         'Busca de Carros em desenvolvimento',
-        style: GoogleFonts.inter(color: Colors.white),
+        style: GoogleFonts.inter(color: Colors.white70),
       ),
     );
   }
 
-  Widget _buildInsuranceSearchForm() {
+  Widget _buildPackageSearchForm() {
     return Center(
       child: Text(
-        'Busca de Seguros em desenvolvimento',
-        style: GoogleFonts.inter(color: Colors.white),
+        'Busca de Pacotes em desenvolvimento',
+        style: GoogleFonts.inter(color: Colors.white70),
       ),
     );
   }
 
-  Widget _buildTripTypeButton(String label, String value) {
-    final isSelected = _tripType == value;
-    return GestureDetector(
-      onTap: () => setState(() => _tripType = value),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFF59E0B) : Colors.white10,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: isSelected ? const Color(0xFFF59E0B) : Colors.white30,
-          ),
-        ),
-        child: Text(
-          label,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? const Color(0xFF1e3a8a) : Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required String label,
-    required String value,
-    required Function(String) onChanged,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Colors.white70,
-          ),
-        ),
-        const SizedBox(height: 8),
-        TextField(
-          onChanged: onChanged,
-          style: GoogleFonts.inter(color: Colors.white),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white10,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Colors.white30),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Colors.white30),
-            ),
-            hintText: 'Ex: São Paulo (GRU)',
-            hintStyle: GoogleFonts.inter(color: Colors.white30),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDateField({
-    required String label,
-    required DateTime? date,
-    required VoidCallback onTap,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Colors.white70,
-          ),
-        ),
-        const SizedBox(height: 8),
-        GestureDetector(
-          onTap: onTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white10,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.white30),
-            ),
-            child: Text(
-              date != null ? DateFormat('dd/MM/yyyy').format(date) : 'Selecionar',
-              style: GoogleFonts.inter(
-                color: date != null ? Colors.white : Colors.white30,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDropdown({
-    required String label,
-    required String value,
-    required List<String> items,
-    required Function(String?) onChanged,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Colors.white70,
-          ),
-        ),
-        const SizedBox(height: 8),
-        DropdownButton<String>(
-          value: value,
-          isExpanded: true,
-          onChanged: onChanged,
-          dropdownColor: const Color(0xFF1e3a8a),
-          style: GoogleFonts.inter(color: Colors.white),
-          items: items.map((item) {
-            return DropdownMenuItem(
-              value: item,
-              child: Text(item),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildHighlightCard({
+  Widget _buildFeatureCard({
     required IconData icon,
     required String title,
     required String description,
   }) {
     return Card(
+      elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          gradient: LinearGradient(
+            colors: [
+              Colors.white,
+              AppTheme.accentOrange.withOpacity(0.05),
+            ],
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 32,
-              color: const Color(0xFFF59E0B),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppTheme.accentOrange.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: AppTheme.accentOrange, size: 24),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             Text(
               title,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: const Color(0xFF1e3a8a),
+                color: AppTheme.primaryNavy,
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 4),
             Text(
               description,
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
                 fontSize: 12,
-                color: Colors.grey[600],
+                color: Color(0xFF6B7280),
               ),
             ),
           ],
@@ -509,10 +527,66 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     );
   }
 
-  Future<void> _selectDate(BuildContext context, bool isDeparture) async {
-    final picked = await showDatePicker(
+  Widget _buildDestinationCard(String city, String price) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          gradient: LinearGradient(
+            colors: [
+              AppTheme.primaryNavy.withOpacity(0.8),
+              AppTheme.navyLight.withOpacity(0.8),
+            ],
+          ),
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              right: -20,
+              top: -20,
+              child: Icon(
+                Icons.location_on,
+                size: 80,
+                color: AppTheme.accentOrange.withOpacity(0.1),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    city,
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    price,
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.accentOrange,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _selectDate(BuildContext context, bool isDeparture) async {
+    final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: isDeparture ? _departureDate : (_returnDate ?? _departureDate),
+      initialDate: isDeparture ? _departureDate : (_returnDate ?? DateTime.now().add(const Duration(days: 1))),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );

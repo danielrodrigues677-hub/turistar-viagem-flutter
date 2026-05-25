@@ -40,25 +40,25 @@ dependencies:
   hive_flutter: ^1.1.0
   
   # Payment
-  stripe_flutter: ^10.0.0
+  # stripe_flutter: ^10.0.0  # package not available on pub.dev
   
-  # Authentication
-  firebase_core: ^2.24.0
-  firebase_auth: ^4.10.0
-  google_sign_in: ^6.1.0
+  # Authentication (disabled - incompatible with Dart 3.5, re-enable with updated versions when needed)
+  # firebase_core: ^2.24.0
+  # firebase_auth: ^4.10.0
+  # google_sign_in: ^6.1.0
   
-  # Analytics
-  firebase_analytics: ^10.7.0
+  # Analytics (disabled - incompatible with Dart 3.5)
+  # firebase_analytics: ^10.7.0
   
-  # Notifications
-  firebase_messaging: ^14.6.0
+  # Notifications (disabled - incompatible with Dart 3.5)
+  # firebase_messaging: ^14.6.0
   
   # Logging
   logger: ^2.0.0
   
   # Glass Morphism & Effects
   glassmorphism: ^3.0.0
-  backdrop_filter: ^0.4.0
+  # backdrop_filter: ^0.4.0  # package not available on pub.dev
   
   # Animations
   lottie: ^2.4.0
@@ -90,17 +90,17 @@ flutter:
     - assets/icons/
     - assets/logos/
   
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Poppins-SemiBold.ttf
-          weight: 600
-    
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-Bold.ttf
-          weight: 700
+  # Fonts are loaded via google_fonts package at runtime
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/Poppins-Regular.ttf
+  #       - asset: assets/fonts/Poppins-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/Poppins-SemiBold.ttf
+  #         weight: 600
+  #   - family: Inter
+  #     fonts:
+  #       - asset: assets/fonts/Inter-Regular.ttf
+  #       - asset: assets/fonts/Inter-Bold.ttf
+  #         weight: 700

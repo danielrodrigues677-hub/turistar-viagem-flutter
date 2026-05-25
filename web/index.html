@@ -32,24 +32,8 @@
   <title>Turistar Viagens - Reserva de Voos</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value of FlutterLoader.scriptTag is replaced with the actual
-    // path of flutter.js the following script has a default value of
-    // "flutter.js" used when the script tag is automatically injected by
-    // flutter tools for development or by default in build/web/index.html
-    // for production.
-    var scriptTag = document.createElement('script');
-    scriptTag.src = 'flutter.js';
-    scriptTag.type = 'module';
-    document.head.append(scriptTag);
-  </script>
+  <script src="flutter_bootstrap.js" async></script>
 </head>
 <body>
-  <script>
-    window.addEventListener('flutter-first-frame', function() {
-      document.body.style.margin = '0';
-      document.body.style.padding = '0';
-    });
-  </script>
 </body>
 </html>

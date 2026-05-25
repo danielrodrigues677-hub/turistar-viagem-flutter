@@ -47,7 +47,7 @@ class TuristarViagemApp extends StatelessWidget {
       ],
       errorBuilder: (context, state) => Scaffold(
         body: Center(
-          child: Text('Página não encontrada: ${state.location}'),
+          child: Text('Página não encontrada: ${state.uri}'),
         ),
       ),
     );

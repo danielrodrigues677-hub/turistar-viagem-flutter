@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 import '../../config/theme/app_theme.dart';
 
 class ConfirmationScreen extends StatelessWidget {
@@ -175,11 +176,7 @@ class ConfirmationScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          '/',
-                          (route) => false,
-                        );
+                        context.go('/');
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 14),

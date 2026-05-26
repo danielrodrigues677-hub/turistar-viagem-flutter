@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
-import 'config/theme/app_theme.dart';
 import 'config/theme/app_theme_premium.dart';
-import 'config/router/app_router.dart';
-import 'providers/app_providers.dart';
 import 'screens/home/home_screen_premium.dart';
 import 'screens/flights/flight_results_screen.dart';
+import 'screens/hotels/hotel_results_screen.dart';
+import 'screens/cars/car_results_screen.dart';
+import 'screens/packages/package_results_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
 import 'screens/confirmation/confirmation_screen.dart';
 
@@ -35,6 +33,21 @@ class TuristarViagemApp extends StatelessWidget {
           builder: (context, state) => const FlightResultsScreen(),
         ),
         GoRoute(
+          path: '/hotels/results',
+          name: 'hotel_results',
+          builder: (context, state) => const HotelResultsScreen(),
+        ),
+        GoRoute(
+          path: '/cars/results',
+          name: 'car_results',
+          builder: (context, state) => const CarResultsScreen(),
+        ),
+        GoRoute(
+          path: '/packages/results',
+          name: 'package_results',
+          builder: (context, state) => const PackageResultsScreen(),
+        ),
+        GoRoute(
           path: '/checkout',
           name: 'checkout',
           builder: (context, state) => const CheckoutScreen(),
@@ -47,20 +60,19 @@ class TuristarViagemApp extends StatelessWidget {
       ],
       errorBuilder: (context, state) => Scaffold(
         body: Center(
-          child: Text('Página não encontrada: ${state.location}'),
+          child: Text('Página não encontrada: ${state.uri}'),
         ),
       ),
     );
 
-    return MultiProvider(
-      providers: AppProviders.providers,
-      child: MaterialApp.router(
-        title: 'Turistar Viagem',
-        theme: AppThemePremium.lightTheme,
-        themeMode: ThemeMode.light,
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
-      ),
+    // MultiProvider requires at least one provider, so we'll skip it for now
+    // and add it back when we have actual providers
+    return MaterialApp.router(
+      title: 'Turistar Viagem',
+      theme: AppThemePremium.lightTheme,
+      themeMode: ThemeMode.light,
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

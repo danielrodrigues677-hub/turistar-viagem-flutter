@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 import '../../config/theme/app_theme.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -41,7 +42,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         backgroundColor: AppTheme.primaryNavy,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.pop(),
         ),
       ),
       body: SingleChildScrollView(
@@ -266,7 +267,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     child: ElevatedButton(
                       onPressed: _agreeTerms
                           ? () {
-                              Navigator.pushNamed(context, '/confirmation');
+                              context.push('/confirmation');
                             }
                           : null,
                       child: Padding(

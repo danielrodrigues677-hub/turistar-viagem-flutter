@@ -3,12 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'config/theme/app_theme.dart';
 import 'config/theme/app_theme_premium.dart';
-import 'config/router/app_router.dart';
 import 'providers/app_providers.dart';
 import 'screens/home/home_screen_premium.dart';
 import 'screens/flights/flight_results_screen.dart';
+import 'screens/hotels/hotel_results_screen.dart';
+import 'screens/cars/car_results_screen.dart';
+import 'screens/packages/package_results_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
 import 'screens/confirmation/confirmation_screen.dart';
 
@@ -33,6 +34,21 @@ class TuristarViagemApp extends StatelessWidget {
           path: '/flights/results',
           name: 'flight_results',
           builder: (context, state) => const FlightResultsScreen(),
+        ),
+        GoRoute(
+          path: '/hotels/results',
+          name: 'hotel_results',
+          builder: (context, state) => const HotelResultsScreen(),
+        ),
+        GoRoute(
+          path: '/cars/results',
+          name: 'car_results',
+          builder: (context, state) => const CarResultsScreen(),
+        ),
+        GoRoute(
+          path: '/packages/results',
+          name: 'package_results',
+          builder: (context, state) => const PackageResultsScreen(),
         ),
         GoRoute(
           path: '/checkout',

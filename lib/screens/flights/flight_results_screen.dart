@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 import '../../config/theme/app_theme.dart';
 import '../../widgets/flight_card.dart';
 
@@ -75,7 +76,7 @@ class _FlightResultsScreenState extends State<FlightResultsScreen> {
         backgroundColor: AppTheme.primaryNavy,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.pop(),
         ),
       ),
       body: SingleChildScrollView(
@@ -157,7 +158,7 @@ class _FlightResultsScreenState extends State<FlightResultsScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/checkout');
+                      context.push('/checkout');
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 14),

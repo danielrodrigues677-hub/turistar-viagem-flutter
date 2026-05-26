@@ -68,15 +68,14 @@ class TuristarViagemApp extends StatelessWidget {
       ),
     );
 
-    return MultiProvider(
-      providers: AppProviders.providers,
-      child: MaterialApp.router(
-        title: 'Turistar Viagem',
-        theme: AppThemePremium.lightTheme,
-        themeMode: ThemeMode.light,
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
-      ),
+    // MultiProvider requires at least one provider, so we'll skip it for now
+    // and add it back when we have actual providers
+    return MaterialApp.router(
+      title: 'Turistar Viagem',
+      theme: AppThemePremium.lightTheme,
+      themeMode: ThemeMode.light,
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

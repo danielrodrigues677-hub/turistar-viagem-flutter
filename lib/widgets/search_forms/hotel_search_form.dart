@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../config/theme/app_theme_premium.dart';
 import '../../utils/responsive.dart';
 import '../gradient_button.dart';
